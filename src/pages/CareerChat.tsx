@@ -85,7 +85,7 @@ const CareerChat = () => {
         transition={{ duration: 0.6 }}
         className="text-4xl font-bold text-center text-indigo-700 dark:text-yellow-400 mb-8"
       >
-        Career Guidance Chatbot
+         <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white sm:text-6xl mb-2">Kickstart <span className="text-indigo-600 dark:text-yellow-400">Chatbot</span></h1>
       </motion.h1>
 
       <div className="max-w-4xl mx-auto flex flex-col h-[75vh] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-4 overflow-hidden">

@@ -17,6 +17,9 @@ export function Services() {
     else if (title === "Certification Programs") {
       navigate("/certification");
     }
+    else if (title === "AI Chat Support") {
+      navigate("/CareerChat");
+    }
     else if (title === "AI Career Guidance") {
       navigate("/AICareerGuidance");
     }

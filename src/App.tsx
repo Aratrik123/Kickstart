@@ -1,3 +1,4 @@
+import PrivateRoute from "./components/PrivateRoute";
 import React, { useEffect, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 import IQTest from "./pages/IQTest";
@@ -17,7 +18,8 @@ import { Certification } from "./pages/certification";
 import CareerChat from "./pages/CareerChat"; // adjust path if different
 import AICareerGuidance from "./pages/AICareerGuidance";
 
-<Route path="/career-chat" element={<CareerChat />} />
+
+<Route path="/CareerChat" element={<CareerChat />} />
 
 
 const App: React.FC = () => {
@@ -42,6 +44,14 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-white dark:from-gray-900 dark:to-gray-800">
       <Navbar />
       <Routes>
+         <Route
+    path="/CareerChat"
+    element={
+      <PrivateRoute>
+        <CareerChat />
+      </PrivateRoute>
+    }
+  />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
@@ -55,7 +65,7 @@ const App: React.FC = () => {
         <Route path="/IQTest" element={<IQTest />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/certification" element={<Certification />} />
-        <Route path="/career-chat" element={<CareerChat />} /> 
+        <Route path="/CareerChat" element={<CareerChat />} /> 
       <Route path="/AICareerGuidance" element={<AICareerGuidance />} />
       </Routes>
       <Footer />

@@ -66,7 +66,6 @@ export function Navbar() {
             <Link to="/" className={isActive("/")}>Home</Link>
             <Link to="/about" className={isActive("/about")}>About</Link>
             <Link to="/services" className={isActive("/services")}>Services</Link>
-            <Link to="/career-chat" className={isActive("/career-chat")}>Career Chat</Link>
             <Link to="/contact" className={isActive("/contact")}>Contact</Link>
            
           </div>
