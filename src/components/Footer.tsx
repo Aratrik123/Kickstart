@@ -43,11 +43,11 @@ export function Footer() {
           <p className="text-gray-600 dark:text-gray-400 mb-4">
             Subscribe for updates on career insights and new features.
           </p>
-          <div className="flex justify-center">
+         <div className="flex justify-center">
             <input
               type="email"
-              placeholder="Enter your email"
-              className="px-4 py-2 w-64 rounded-l-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none"
+              placeholder="Email"
+              className="px-4 py-2 w-40 sm:w-64 rounded-l-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none"
             />
             <button className="bg-indigo-600 px-4 py-2 rounded-r-lg text-white hover:bg-indigo-700 transition">
               Subscribe
