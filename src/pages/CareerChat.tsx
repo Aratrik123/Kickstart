@@ -153,7 +153,7 @@ const CareerChat = () => {
             />
             <button
               onClick={sendMessage}
-              className="ml-3 bg-indigo-600 dark:bg-yellow-500 text-white px-5 py-2 rounded-md hover:bg-indigo-700 dark:hover:bg-yellow-600 transition"
+              className="ml-3 bg-yellow-500 dark:bg-yellow-500 text-white px-5 py-2 rounded-md hover:bg-indigo-700 dark:hover:bg-yellow-600 transition"
             >
               Send
             </button>
@@ -162,13 +162,13 @@ const CareerChat = () => {
           <div className="flex gap-3">
             <button
               onClick={downloadPDF}
-              className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
+              className="bg-cyan-600 text-white px-4 py-2 rounded-md hover:bg-cyan-700 transition"
             >
               📄 Download PDF
             </button>
             <button
               onClick={clearChat}
-              className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
+              className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
             >
               🗑️ Clear Chat
             </button>

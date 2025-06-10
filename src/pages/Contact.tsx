@@ -1,31 +1,49 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import { motion } from "framer-motion";
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 export function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
+  const [emailError, setEmailError] = useState('');
+
+  const allowedDomains = ["gmail.com", "yahoo.com", "outlook.com", "protonmail.com", "hotmail.com", "aot.edu.in"];
+
+  const isValidEmail = (email: string) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) return false;
+    const domain = email.split('@')[1];
+    return allowedDomains.includes(domain.toLowerCase());
+  };
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
 
+    const form = formRef.current;
+    const emailValue = form?.Email?.value;
+
+    if (!isValidEmail(emailValue)) {
+      setEmailError('Please enter a valid email address.');
+      return;
+    } else {
+      setEmailError('');
+    }
+
     if (formRef.current) {
       emailjs
         .sendForm(
-          "service_kbti9wm",    // Replace with your actual service ID
-          "template_gx6jcxp",   // Replace with your actual template ID
-          formRef.current as HTMLFormElement, // Explicitly cast to HTMLFormElement
-          "2Ms_m_UjFVjk0gCFn"     // Replace with your actual public key
+          "service_kbti9wm",
+          "template_gx6jcxp",
+          formRef.current,
+          "2Ms_m_UjFVjk0gCFn"
         )
         .then(
-          (result: EmailJSResponseStatus) => { // Add type for result
-        console.log("Email sent:", result.text);
-        alert("✅ Message sent successfully!");
-        formRef.current?.reset();
+          (result: EmailJSResponseStatus) => {
+            console.log("Email sent:", result.text);
+            formRef.current?.reset();
           },
-          (error: { text: string }) => { // Add type for error
-        console.error("Email error:", error.text);
-        alert("❌ Something went wrong. Please try again.");
+          (error: { text: string }) => {
+            console.error("Email error:", error.text);
           }
         );
     }
@@ -39,7 +57,9 @@ export function Contact() {
         transition={{ duration: 1, ease: "easeOut" }}
         className="max-w-6xl mx-auto px-6 lg:px-8 text-center"
       >
-        <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white">Get in <span className="text-indigo-600 dark:text-yellow-400">Touch</span></h1>
+        <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white">
+          Get in <span className="text-indigo-600 dark:text-yellow-400">Touch</span>
+        </h1>
         <p className="mt-5 text-lg text-gray-600 dark:text-gray-300 sm:text-xl max-w-3xl mx-auto">
           Have questions or need support? Reach out and we’ll respond as soon as possible.
         </p>
@@ -61,7 +81,22 @@ export function Contact() {
             <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-6">Send Us a Message</h2>
             <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
               <input name="Name" type="text" placeholder="Name" required className="w-full rounded-lg border-gray-300 dark:border-gray-700 p-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-              <input name="Email" type="email" placeholder="Email" required className="w-full rounded-lg border-gray-300 dark:border-gray-700 p-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+              
+              <div>
+                <input
+                  name="Email"
+                  type="email"
+                  placeholder="Email"
+                  required
+                  className={`w-full rounded-lg border p-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${
+                    emailError ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                  }`}
+                />
+                {emailError && (
+                  <p className="mt-1 text-sm text-red-500">{emailError}</p>
+                )}
+              </div>
+
               <input name="Subject" type="text" placeholder="Subject" className="w-full rounded-lg border-gray-300 dark:border-gray-700 p-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
               <input name="Message" type="text" placeholder="Message" className="w-full rounded-lg border-gray-300 dark:border-gray-700 p-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
               <button type="submit" className="w-full bg-indigo-600 text-white px-5 py-3 rounded-lg hover:bg-indigo-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 transition-all">Send Message</button>

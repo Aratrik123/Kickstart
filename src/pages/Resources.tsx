@@ -40,7 +40,6 @@ const allResources: Resource[] = [
     category: "Engineering",
     link: "https://www.w3schools.com"
   },
-
   // Medical
   {
     title: "Khan Academy MCAT",
@@ -66,7 +65,6 @@ const allResources: Resource[] = [
     category: "Medical",
     link: "https://www.lecturio.com"
   },
-
   // Mathematics
   {
     title: "Brilliant",
@@ -80,7 +78,6 @@ const allResources: Resource[] = [
     category: "Mathematics",
     link: "https://www.youtube.com/user/patrickJMT"
   },
-
   // Sports
   {
     title: "Athlean-X",
@@ -94,7 +91,6 @@ const allResources: Resource[] = [
     category: "Sports",
     link: "https://www.nike.com/ntc-app"
   },
-
   // Music
   {
     title: "Yousician",
@@ -108,7 +104,6 @@ const allResources: Resource[] = [
     category: "Music",
     link: "https://www.coursera.org/browse/arts-and-humanities/music"
   },
-
   // Physics
   {
     title: "Physics Galaxy",
@@ -122,7 +117,6 @@ const allResources: Resource[] = [
     category: "Physics",
     link: "http://hyperphysics.phy-astr.gsu.edu"
   },
-
   // Geography
   {
     title: "National Geographic Education",
@@ -136,7 +130,6 @@ const allResources: Resource[] = [
     category: "Geography",
     link: "https://www.seterra.com"
   },
-
   // History
   {
     title: "CrashCourse History",
@@ -150,7 +143,6 @@ const allResources: Resource[] = [
     category: "History",
     link: "https://www.historyextra.com"
   },
-
   // Government Exams
   {
     title: "Unacademy",
@@ -164,7 +156,6 @@ const allResources: Resource[] = [
     category: "Government Exams",
     link: "https://testbook.com"
   },
-
   // Chemistry
   {
     title: "ChemCollective",
@@ -178,7 +169,6 @@ const allResources: Resource[] = [
     category: "Chemistry",
     link: "https://www.khanacademy.org/science/chemistry"
   },
-
   // Biology
   {
     title: "Bozeman Science",
@@ -192,7 +182,6 @@ const allResources: Resource[] = [
     category: "Biology",
     link: "https://www.biointeractive.org"
   },
-
   // Miscellaneous
   {
     title: "TED-Ed",
@@ -208,20 +197,20 @@ const allResources: Resource[] = [
   }
 ];
 
-const categories = [
-  "All",
-  ...Array.from(new Set(allResources.map((res) => res.category)))
-];
+const categories = ["All", ...Array.from(new Set(allResources.map((res) => res.category)))];
 
 export function Resources() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+
   const filteredResources = selectedCategory === "All"
     ? allResources
     : allResources.filter((res) => res.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 py-10 px-4">
-      <h1 className="text-4xl font-bold text-center text-indigo-700 mb-8">Explore Learning Resources</h1>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 py-10 px-4 text-gray-900 dark:text-white">
+      <h1 className="text-4xl font-bold text-center text-indigo-700 dark:text-yellow-400 mb-8">
+        Explore <span className="text-indigo-600 dark:text-yellow-300">Learning Resources</span>
+      </h1>
 
       <div className="flex flex-wrap gap-4 justify-center mb-10">
         {categories.map((category) => (
@@ -229,8 +218,8 @@ export function Resources() {
             key={category}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
               ${selectedCategory === category
-                ? "bg-indigo-600 text-white"
-                : "bg-white text-indigo-600 border border-indigo-300 hover:bg-indigo-100"}`}
+                ? "bg-indigo-600 dark:bg-yellow-500 text-white"
+                : "bg-white dark:bg-gray-700 text-indigo-600 dark:text-yellow-300 border border-indigo-300 dark:border-gray-600 hover:bg-indigo-100 dark:hover:bg-gray-600"}`}
             onClick={() => setSelectedCategory(category)}
           >
             {category}
@@ -246,11 +235,13 @@ export function Resources() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             key={index}
-            className="block bg-white rounded-xl shadow-lg p-6 border border-gray-200 hover:border-indigo-500 transition-all"
+            className="block bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700 hover:border-indigo-500 dark:hover:border-yellow-500 transition-all"
           >
-            <h3 className="text-xl font-bold text-indigo-700 mb-2">{resource.title}</h3>
-            <p className="text-gray-600">{resource.description}</p>
-            <span className="text-xs mt-2 inline-block text-indigo-500 font-medium">{resource.category}</span>
+            <h3 className="text-xl font-bold text-indigo-700 dark:text-yellow-400 mb-2">{resource.title}</h3>
+            <p className="text-gray-600 dark:text-gray-300">{resource.description}</p>
+            <span className="text-xs mt-2 inline-block text-indigo-500 dark:text-yellow-300 font-medium">
+              {resource.category}
+            </span>
           </motion.a>
         ))}
       </div>
